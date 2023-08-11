@@ -106,4 +106,8 @@ def preprocessing(df):
     df['round'] = pd.to_numeric(df['round'].str.extract(r'(\d+)')[0], errors='ignore')
     df['round'].fillna(39, inplace=True)
 
+    #encoding
+    df = pd.get_dummies(df, columns=['position'], prefix=['position'])
+    df['substitute'] = df['substitute'].astype(int)
+
     return df.to_csv(f'league.csv', index=False)
