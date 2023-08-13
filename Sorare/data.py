@@ -83,6 +83,127 @@ def merge_fixture_norm_df_with_df_league_norm(league_id,df):
 
     return df_league_fin
 
+def own_goals_serie_a_2020(df):
+    df['own_goals'] = 0
+    df.loc[(df['round'] == 37) & (df['player_name'] == 'Lorenzo Venuti'), 'own_goals'] = 1
+    df.loc[(df['round'] == 4) & (df['player_name'] == 'Takehiro Tomiyasu'), 'own_goals'] = 1
+    df.loc[(df['round'] == 25) & (df['player_name'] == 'Leonardo Spinazzola'), 'own_goals'] = 1
+    df.loc[(df['round'] == 21) & (df['player_name'] == 'Marco Silvestri'), 'own_goals'] = 1
+    df.loc[(df['round'] == 31) & (df['player_name'] == 'Gianluca Scamacca'), 'own_goals'] = 1
+    df.loc[(df['round'] == 14) & (df['player_name'] == 'Alex Sandro'), 'own_goals'] = 1
+    df.loc[(df['round'] == 8) & (df['player_name'] == 'Vasco Regini'), 'own_goals'] = 1
+    df.loc[(df['round'] == 11) & (df['player_name'] == 'Andrea Poli'), 'own_goals'] = 1
+    df.loc[(df['round'] == 3) & (df['player_name'] == 'Luca Pellegrini'), 'own_goals'] = 1
+    df.loc[(df['round'] == 4) & (df['player_name'] == 'Lorenzo Montipò'), 'own_goals'] = 1
+    df.loc[(df['round'] == 36) & (df['player_name'] == 'Salvatore Molina'), 'own_goals'] = 1
+    df.loc[(df['round'] == 34) & (df['player_name'] == 'Adam Marušić'), 'own_goals'] = 1
+    df.loc[(df['round'] == 15) & (df['player_name'] == 'Luca Marrone'), 'own_goals'] = 1
+    df.loc[(df['round'] == 25) & (df['player_name'] == 'Nikola Maksimović'), 'own_goals'] = 1
+    df.loc[(df['round'] == 7) & (df['player_name'] == 'Giangiacomo Magnani'), 'own_goals'] = 1
+    df.loc[(df['round'] == 11) & (df['player_name'] == 'Manuel Lazzari'), 'own_goals'] = 1
+    df.loc[(df['round'] == 20) & (df['player_name'] == 'Riccardo Improta'), 'own_goals'] = 1
+    df.loc[(df['round'] == 21) & (df['player_name'] == 'Roger Ibañez'), 'own_goals'] = 1
+    df.loc[(df['round'] == 31) & (df['player_name'] == 'Samir Handanovič'), 'own_goals'] = 1
+    df.loc[(df['round'] == 22) & (df['player_name'] == 'Alberto Grassi'), 'own_goals'] = 1
+    df.loc[(df['round'] == 23) & (df['player_name'] == 'Robin Gosens'), 'own_goals'] = 1
+    df.loc[(df['round'] == 18) & (df['player_name'] == 'Kamil Glik'), 'own_goals'] = 1
+    df.loc[(df['round'] == 25) & (df['player_name'] == 'Daam Foulon'), 'own_goals'] = 1
+    df.loc[(df['round'] == 31) & (df['player_name'] == 'Fabio Depaoli'), 'own_goals'] = 1
+    df.loc[(df['round'] == 11) & (df['player_name'] == 'Bryan Cristante'), 'own_goals'] = 1
+    df.loc[(df['round'] == 9) & (df['player_name'] == 'Vladi Chiricheş'), 'own_goals'] = 1
+    df.loc[(df['round'] == 37) & (df['player_name'] == 'Giorgio Chiellini'), 'own_goals'] = 1
+    df.loc[(df['round'] == 2) & (df['player_name'] == 'Federico Ceccherini'), 'own_goals'] = 1
+    df.loc[(df['round'] == 7) & (df['player_name'] == 'Davide Calabria'), 'own_goals'] = 1
+    df.loc[(df['round'] == 30) & (df['player_name'] == 'Federico Barba'), 'own_goals'] = 1
+    df.loc[(df['round'] == 4) & (df['player_name'] == 'Simone Iacoponi'), 'own_goals'] = 1
+    df.loc[(df['round'] == 26) & (df['player_name'] == 'Simone Iacoponi'), 'own_goals'] = 1
+
+    df['own_goals'] = df['own_goals'].astype(int)
+
+    return df
+
+def own_goals_serie_a_2021(df):
+    df['own_goals'] = 0
+    df.loc[(df['round'] == 29) & (df['player_name'] == 'Maya Yoshida'), 'own_goals'] = 1
+    df.loc[(df['round'] == 12) & (df['player_name'] == 'Stefan de Vrij'), 'own_goals'] = 1
+    df.loc[(df['round'] == 8) & (df['player_name'] == 'Mattia Viti'), 'own_goals'] = 1
+    df.loc[(df['round'] == 8) & (df['player_name'] == 'Lorenzo Venuti'), 'own_goals'] = 1
+    df.loc[(df['round'] == 17) & (df['player_name'] == 'Zinho Vanheusden'), 'own_goals'] = 1
+    df.loc[(df['round'] == 11) & (df['player_name'] == 'Lorenzo Tonelli'), 'own_goals'] = 1
+    df.loc[(df['round'] == 7) & (df['player_name'] == 'Jens Stryger Larsen'), 'own_goals'] = 1
+    df.loc[(df['round'] == 9) & (df['player_name'] == 'Stefan Strandberg'), 'own_goals'] = 1
+    df.loc[(df['round'] == 17) & (df['player_name'] == 'Adama Soumaoro'), 'own_goals'] = 1
+    df.loc[(df['round'] == 25) & (df['player_name'] == 'Chris Smalling'), 'own_goals'] = 1
+    df.loc[(df['round'] == 10) & (df['player_name'] == 'Salvatore Sirigu'), 'own_goals'] = 1
+    df.loc[(df['round'] == 37) & (df['player_name'] == 'Alex Sandro'), 'own_goals'] = 1
+    df.loc[(df['round'] == 36) & (df['player_name'] == 'Simone Romagnoli'), 'own_goals'] = 1
+    df.loc[(df['round'] == 35) & (df['player_name'] == 'Ivan Provedel'), 'own_goals'] = 1
+    df.loc[(df['round'] == 32) & (df['player_name'] == 'Patric'), 'own_goals'] = 1
+    df.loc[(df['round'] == 18) & (df['player_name'] == 'Dimitris Nikolaou'), 'own_goals'] = 1
+    df.loc[(df['round'] == 18) & (df['player_name'] == 'Riccardo Marchizza'), 'own_goals'] = 1
+    df.loc[(df['round'] == 33) & (df['player_name'] == 'Teun Koopmeiners'), 'own_goals'] = 1
+    df.loc[(df['round'] == 14) & (df['player_name'] == 'Simon Kjær'), 'own_goals'] = 1
+    df.loc[(df['round'] == 19) & (df['player_name'] == 'Juan Jesus'), 'own_goals'] = 1
+    df.loc[(df['round'] == 4) & (df['player_name'] == 'Ivan Ilić'), 'own_goals'] = 1
+    df.loc[(df['round'] == 9) & (df['player_name'] == 'Zlatan Ibrahimović'), 'own_goals'] = 1
+    df.loc[(df['round'] == 9) & (df['player_name'] == 'Emmanuel Gyasi'), 'own_goals'] = 1
+    df.loc[(df['round'] == 8) & (df['player_name'] == 'Koray Günter'), 'own_goals'] = 1
+    df.loc[(df['round'] == 20) & (df['player_name'] == 'Remo Freuler'), 'own_goals'] = 1
+    df.loc[(df['round'] == 12) & (df['player_name'] == 'Davide Frattesi'), 'own_goals'] = 1
+    df.loc[(df['round'] == 18) & (df['player_name'] == 'Bryan Cristante'), 'own_goals'] = 1
+    df.loc[(df['round'] == 21) & (df['player_name'] == 'Berat Djimsiti'), 'own_goals'] = 1
+    df.loc[(df['round'] == 13) & (df['player_name'] == 'Francesco Di Tacchio'), 'own_goals'] = 1
+    df.loc[(df['round'] == 16) & (df['player_name'] == 'Andrea Carboni'), 'own_goals'] = 1
+    df.loc[(df['round'] == 6) & (df['player_name'] == 'Kevin Bonifazi'), 'own_goals'] = 1
+    df.loc[(df['round'] == 24) & (df['player_name'] == 'Cristiano Biraghi'), 'own_goals'] = 1
+    df.loc[(df['round'] == 10) & (df['player_name'] == 'Kristoffer Askildsen'), 'own_goals'] = 1
+    df.loc[(df['round'] == 33) & (df['player_name'] == 'Ardian Ismajli'), 'own_goals'] = 1
+    df.loc[(df['round'] == 9) & (df['player_name'] == 'Ardian Ismajli'), 'own_goals'] = 1
+    df.loc[(df['round'] == 9) & (df['player_name'] == 'Thomas Henry'), 'own_goals'] = 1
+    df.loc[(df['round'] == 16) & (df['player_name'] == 'Thomas Henry'), 'own_goals'] = 1
+
+    df['own_goals'] = df['own_goals'].astype(int)
+
+    return df
+
+def own_goals_serie_a_2022(df):
+    df['own_goals'] = 0
+    df.loc[(df['round'] == 10) & (df['player_name'] == 'Miguel Veloso'), 'own_goals'] = 1
+    df.loc[(df['round'] == 7) & (df['player_name'] == 'Milan Škriniar'), 'own_goals'] = 1
+    df.loc[(df['round'] == 5) & (df['player_name'] == 'Jerdy Schouten'), 'own_goals'] = 1
+    df.loc[(df['round'] == 35) & (df['player_name'] == 'Ruan'), 'own_goals'] = 1
+    df.loc[(df['round'] == 22) & (df['player_name'] == 'Nehuén Pérez'), 'own_goals'] = 1
+    df.loc[(df['round'] == 37) & (df['player_name'] == 'André Onana'), 'own_goals'] = 1
+    df.loc[(df['round'] == 24) & (df['player_name'] == 'Juan Musso'), 'own_goals'] = 1
+    df.loc[(df['round'] == 7) & (df['player_name'] == 'Jeison Murillo'), 'own_goals'] = 1
+    df.loc[(df['round'] == 15) & (df['player_name'] == 'Nikola Milenković'), 'own_goals'] = 1
+    df.loc[(df['round'] == 5) & (df['player_name'] == 'Marlon'), 'own_goals'] = 1
+    df.loc[(df['round'] == 37) & (df['player_name'] == 'Giangiacomo Magnani'), 'own_goals'] = 1
+    df.loc[(df['round'] == 15) & (df['player_name'] == 'José Luis Palomino'), 'own_goals'] = 1
+    df.loc[(df['round'] == 33) & (df['player_name'] == 'Jhon Lucumí'), 'own_goals'] = 1
+    df.loc[(df['round'] == 37) & (df['player_name'] == 'Manuel Lazzari'), 'own_goals'] = 1
+    df.loc[(df['round'] == 24) & (df['player_name'] == 'Ardian Ismajli'), 'own_goals'] = 1
+    df.loc[(df['round'] == 22) & (df['player_name'] == 'Roger Ibañez'), 'own_goals'] = 1
+    df.loc[(df['round'] == 18) & (df['player_name'] == 'Theo Hernández'), 'own_goals'] = 1
+    df.loc[(df['round'] == 7) & (df['player_name'] == 'Joan González'), 'own_goals'] = 1
+    df.loc[(df['round'] == 33) & (df['player_name'] == 'Adolfo Gaich'), 'own_goals'] = 1
+    df.loc[(df['round'] == 37) & (df['player_name'] == 'Martin Erlić'), 'own_goals'] = 1
+    df.loc[(df['round'] == 17) & (df['player_name'] == 'Denzel Dumfries'), 'own_goals'] = 1
+    df.loc[(df['round'] == 11) & (df['player_name'] == 'Lorenzo De Silvestri'), 'own_goals'] = 1
+    df.loc[(df['round'] == 19) & (df['player_name'] == 'Vlad Chiricheş'), 'own_goals'] = 1
+    df.loc[(df['round'] == 28) & (df['player_name'] == 'Mattia Caldara'), 'own_goals'] = 1
+    df.loc[(df['round'] == 31) & (df['player_name'] == 'Cristiano Biraghi'), 'own_goals'] = 1
+    df.loc[(df['round'] == 20) & (df['player_name'] == 'Rodrigo Becão'), 'own_goals'] = 1
+    df.loc[(df['round'] == 5) & (df['player_name'] == 'Emil Audero'), 'own_goals'] = 1
+    df.loc[(df['round'] == 29) & (df['player_name'] == 'Przemysław Wiśniewski'), 'own_goals'] = 1
+    df.loc[(df['round'] == 37) & (df['player_name'] == 'Przemysław Wiśniewski'), 'own_goals'] = 1
+    df.loc[(df['round'] == 27) & (df['player_name'] == 'Antonino Gallo'), 'own_goals'] = 1
+    df.loc[(df['round'] == 29) & (df['player_name'] == 'Antonino Gallo'), 'own_goals'] = 1
+
+    df['own_goals'] = df['own_goals'].astype(int)
+
+    return df
+
 
 def preprocessing(df):
 
@@ -109,5 +230,15 @@ def preprocessing(df):
     #encoding
     df = pd.get_dummies(df, columns=['position'], prefix=['position'])
     df['substitute'] = df['substitute'].astype(int)
+
+    #deleting columns
+    columns_to_drop = ['updateAt', 'captain', 'event_timestamp',
+                       'firstHalfStart', 'secondHalfStart',
+                       'status','statusShort', 'elapsed',
+                       'venue', 'referee', 'league_logo', 'league_flag',
+                       'homeTeam_logo', 'awayTeam_logo', 'score_halftime',
+                       'score_fulltime', 'score_extratime', 'sore_penalty']
+    df = df.drop(columns=columns_to_drop)
+
 
     return df.to_csv(f'league.csv', index=False)
