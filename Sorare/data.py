@@ -229,7 +229,7 @@ def preprocessing(df):
 
     #encoding
     df = pd.get_dummies(df, columns=['position'], prefix=['position'])
-    df['substitute'] = df['substitute'].astype(int)
+    df['substitute'] = df['substitute'].apply(lambda x: 1 if x == 'True' else 0)
 
     #deleting columns
     columns_to_drop = ['updateAt', 'captain', 'event_timestamp',
@@ -237,7 +237,7 @@ def preprocessing(df):
                        'status','statusShort', 'elapsed',
                        'venue', 'referee', 'league_logo', 'league_flag',
                        'homeTeam_logo', 'awayTeam_logo', 'score_halftime',
-                       'score_fulltime', 'score_extratime', 'sore_penalty']
+                       'score_fulltime', 'score_extratime', 'score_penalty']
     df = df.drop(columns=columns_to_drop)
 
 
