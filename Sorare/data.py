@@ -83,6 +83,7 @@ def merge_fixture_norm_df_with_df_league_norm(league_id,df):
 
     return df_league_fin
 
+
 def own_goals_serie_a_2020(df):
     df['own_goals'] = 0
     df.loc[(df['round'] == 37) & (df['player_name'] == 'Lorenzo Venuti'), 'own_goals'] = 1
@@ -200,10 +201,18 @@ def own_goals_serie_a_2022(df):
     df.loc[(df['round'] == 27) & (df['player_name'] == 'Antonino Gallo'), 'own_goals'] = 1
     df.loc[(df['round'] == 29) & (df['player_name'] == 'Antonino Gallo'), 'own_goals'] = 1
 
+
     df['own_goals'] = df['own_goals'].astype(int)
 
     return df
 
+def own_goals_other_league(df):
+    df['own_goals'] = 0
+    df.loc[(df['round'] == 31) & (df['player_name'] == 'Andrea La Mantia'), 'own_goals'] = 1
+
+    df['own_goals'] = df['own_goals'].astype(int)
+
+    return df
 
 def preprocessing(df):
 
@@ -242,3 +251,55 @@ def preprocessing(df):
 
 
     return df.to_csv(f'league.csv', index=False)
+
+
+
+def find_players_other_league_and_add_to_serie_a(year, csv_year_minus_1, csv_year, csv_other_league):
+    df_year_minus_1 = pd.read_csv(csv_year_minus_1)
+    league_year_minus_1 = df_year_minus_1.copy()
+    if year == 2022:
+        league_year_minus_1 = own_goals_serie_a_2021(league_year_minus_1)
+    elif year == 2021:
+        league_year_minus_1 = own_goals_serie_a_2020(league_year_minus_1)
+    else:
+        league_year_minus_1 == 0
+
+    df_year = pd.read_csv(csv_year)
+    league_year = df_year.copy()
+    if year == 2022:
+        league_year = own_goals_serie_a_2022(league_year)
+    elif year == 2021:
+        league_year = own_goals_serie_a_2021(league_year)
+    else:
+        league_year == 0
+
+    df_other_league = pd.read_csv(csv_other_league)
+    other_league = df_other_league.copy()
+    other_league = own_goals_other_league(other_league)
+
+    missing_players = pd.merge(league_year_minus_1, league_year, on='player_name', how='left', indicator=True) #merges 2 csv
+    missing_players = missing_players[missing_players['_merge'] == 'left_only'] #finds missing players
+    missing_players = missing_players[['player_name']] #gives the names of the players
+    player_counts = missing_players.groupby('player_name').size().reset_index(name='missing_count') #gives the count of missing games in the league
+    sorted_player_counts = player_counts.sort_values(by='missing_count', ascending=False) #sorts the players
+    filtered_players = sorted_player_counts[sorted_player_counts['missing_count'] == 38] #filters the players who have been playing in the season
+    filtered_players_list = filtered_players['player_name'].tolist() #puts the players in a list)
+
+    #iterates through the list and gives back the stats for games
+    stacked_player_data = []
+
+    for p in filtered_players_list:
+        player_rows = other_league[other_league['player_name'] == p]
+        if not player_rows.empty:
+            stacked_player_data.append(player_rows)
+        else:
+            print(f"Player '{p}' not found")
+
+    stacked_data = pd.concat(stacked_player_data)
+
+    # Concatenate the existing data and the stacked data
+    combined_data = pd.concat([league_year, stacked_data], ignore_index=True)
+
+
+
+    return combined_data.to_csv('new.csv', index=False)
