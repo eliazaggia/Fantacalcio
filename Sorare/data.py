@@ -254,7 +254,14 @@ def preprocessing(df):
 
 
 
-def find_players_other_league_and_add_to_serie_a(year, csv_year_minus_1, csv_year, csv_other_league):
+def find_players_other_league_and_add_to_serie_a(year,csv_year_minus_2, csv_year_minus_1, csv_year, csv_other_league):
+    df_year_minus_2 = pd.read_csv(csv_year_minus_2)
+    league_year_minus_2 = df_year_minus_2.copy()
+    if year == 2022:
+        league_year_minus_2 = own_goals_serie_a_2020(league_year_minus_2)
+    else:
+        league_year_minus_2 == 0
+
     df_year_minus_1 = pd.read_csv(csv_year_minus_1)
     league_year_minus_1 = df_year_minus_1.copy()
     if year == 2022:
@@ -277,13 +284,28 @@ def find_players_other_league_and_add_to_serie_a(year, csv_year_minus_1, csv_yea
     other_league = df_other_league.copy()
     other_league = own_goals_other_league(other_league)
 
-    missing_players = pd.merge(league_year_minus_1, league_year, on='player_name', how='left', indicator=True) #merges 2 csv
-    missing_players = missing_players[missing_players['_merge'] == 'left_only'] #finds missing players
-    missing_players = missing_players[['player_name']] #gives the names of the players
-    player_counts = missing_players.groupby('player_name').size().reset_index(name='missing_count') #gives the count of missing games in the league
-    sorted_player_counts = player_counts.sort_values(by='missing_count', ascending=False) #sorts the players
-    filtered_players = sorted_player_counts[sorted_player_counts['missing_count'] == 38] #filters the players who have been playing in the season
-    filtered_players_list = filtered_players['player_name'].tolist() #puts the players in a list)
+    serie_a_players_22 = csv_year.groupby('player_name')['round'].count().sort_values(ascending=False)
+    serie_a_players_22_df = serie_a_players_22.reset_index(name='round_count_22')
+
+    serie_a_players_21 = csv_year_minus_1.groupby('player_name')['round'].count().sort_values(ascending=False)
+    serie_a_players_21_df = serie_a_players_21.reset_index(name='round_count_21')
+
+    serie_a_players_20 = csv_year_minus_2.groupby('player_name')['round'].count().sort_values(ascending=False)
+    serie_a_players_20_df = serie_a_players_20.reset_index(name='round_count_20')
+
+    merged_df = pd.merge(serie_a_players_22_df, serie_a_players_21_df, on='player_name', how='outer')
+    merged_df = pd.merge(merged_df, serie_a_players_20_df, on='player_name', how='outer')
+
+    df_overview = merged_df.dropna(subset=['round_count_22'])
+
+    df_overview.loc[:, '21_nan'] = df_overview['round_count_21'].isna()
+    df_overview.loc[:, '20_nan'] = df_overview['round_count_20'].isna()
+    df_overview['21_gap'] = df_overview['round_count_22'] - df_overview['round_count_21']
+    df_overview['20_gap'] = df_overview['round_count_22'] - df_overview['round_count_20']
+
+    filtered_rows = df_overview[df_overview['21_nan']]
+
+    filtered_players_list = filtered_rows['player_name'].tolist()
 
     #iterates through the list and gives back the stats for games
     stacked_player_data = []
