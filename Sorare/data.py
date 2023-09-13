@@ -320,7 +320,12 @@ def find_players_other_league_and_add_to_serie_a(year,csv_year_minus_2, csv_year
     stacked_data = pd.concat(stacked_player_data)
 
     # Concatenate the existing data and the stacked data
-    combined_data = pd.concat([league_year, stacked_data], ignore_index=True)
+    if year == 2022:
+        combined_data = pd.concat([league_year, stacked_data], ignore_index=True)
+    elif year == 2021:
+        combined_data = pd.concat([league_year_minus_1, stacked_data], ignore_index=True)
+    else:
+        combined_data = pd.concat([league_year_minus_2, stacked_data], ignore_index=True)
 
 
 
