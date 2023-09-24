@@ -232,6 +232,9 @@ def preprocessing(df):
 
     df['minutes_played'].fillna(0, inplace=True)
 
+    #- in rating column
+    df['rating'] = df['rating'].replace('-', 0)
+
     #accessing rounds numbers
     df['round'] = pd.to_numeric(df['round'].str.extract(r'(\d+)')[0], errors='ignore')
     df['round'].fillna(39, inplace=True)
